@@ -1,0 +1,29 @@
+body {
+	color: #FFFFFF;
+	background: #999999;
+	margin: 0px;
+}
+a {
+	color: #FFFFFF;
+}
+#interactivecards {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	z-index: -1;
+}
+#c {
+	display: block;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: none;
+	cursor: grab;
+}
+div {
+	z-index: 10;
+	padding-top: 80vh;
+}
