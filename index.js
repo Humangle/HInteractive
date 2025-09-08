@@ -1,6 +1,23 @@
 import * as THREE from 'three';
 import {Tween, Easing} from '/interpolator.js';
 
+const getScrollPercentage = () => {
+    const scrollTop = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+
+    const scrollableHeight = documentHeight - viewportHeight;
+
+    // No scrollable height
+    if (scrollableHeight === 0) {
+        return 0;
+    }
+
+    const scrollPercent = (scrollTop / scrollableHeight) * 100;
+    return Math.floor(scrollPercent);
+}
+
+
 const stories = [
 	{
 		"title": "A Robbery Incident Killed His Wife and Unravelled His Whole Life",
@@ -89,11 +106,25 @@ const stories = [
 	}
 ];
 
+
+//animation for each story link
+for (let x=0; x<stories.length; x++){
+	stories[x].tl = new ViewTimeline({
+		subject: document.getElementsByTagName("a")[x],
+	});
+	document.getElementsByTagName("a")[x].animate({
+		opacity: [0, 1],
+	}, {
+		easing: 'ease-in-out',
+		timeline: stories[x].tl,
+	});
+}
+
 let main = () => {
 	
 	//canvas
 	const canvas = document.getElementById("c");
-	const renderer = new THREE.WebGLRenderer({canvas, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
+	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
 	renderer.setPixelRatio(1.0);
 	renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 	renderer.xr.enabled = true;
@@ -131,12 +162,19 @@ let main = () => {
 		//const loader = new THREE.TextureLoader();
 		//const texture = loader.load( 'resources/images/wall.jpg' );
 		//texture.colorSpace = THREE.SRGBColorSpace;
+		const lineGeometry =  new THREE.BufferGeometry().setFromPoints([
+			new THREE.Vector3(1, 1, -dfcp),
+			new THREE.Vector3(1, 6, -dfcp),
+		]);
+		const line = new THREE.Line(lineGeometry);
+		//line.scale.z = 1;
 		const cardGeometry = new THREE.PlaneGeometry(2, 2);
 		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.DoubleSide});
 		const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
 		photoCard.position.set(1, 0, -dfcp);
 		//photoCard.lookAt(camera.position);
-		return photoCard;
+		line.add(photoCard);
+		return line;
 	}
 	
 	//make for each story
@@ -155,6 +193,10 @@ let main = () => {
 	let render = (time) => {
 		
 		renderer.render(scene, camera);
+		
+		let currentCardID = Math.floor(getScrollPercentage()/(100/stories.length));
+		
+		let linkopacity = currentCardID - (getScrollPercentage()/(100/stories.length));
 		
 	}
 	

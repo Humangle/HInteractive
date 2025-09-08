@@ -2,9 +2,7 @@ body {
 	color: #FFFFFF;
 	background: #999999;
 	margin: 0px;
-}
-a {
-	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
 }
 #interactivecards {
 	height: 100%;
@@ -24,6 +22,16 @@ a {
 	cursor: grab;
 }
 div {
+	padding-top: 15vh;
+}
+a:link, a:visited {
 	z-index: 10;
-	padding-top: 10vh;
+	margin-bottom: 10vh;
+	font-size: 20px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #22b2d7;
 }
