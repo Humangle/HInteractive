@@ -22,7 +22,7 @@ body {
 	cursor: grab;
 }
 div {
-	padding-top: 15vh;
+	padding-top: 25vh;
 }
 a:link, a:visited {
 	z-index: 10;
@@ -30,6 +30,7 @@ a:link, a:visited {
 	font-size: 20px;
 	color: #FFFFFF;
 	text-decoration: none;
+	padding: 15px;
 }
 
 a:hover, a:active {
