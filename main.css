@@ -12,6 +12,14 @@ body {
 	position: fixed;
 	z-index: -1;
 }
+#interactivetitles {
+	padding-top: 80vh;
+	overflow-y: auto;
+	scrollbar-height: none;
+	-ms-overflowstyle: none;
+	scroll-snap-type: y mandatory;
+	-webkit-overflow-scrolling: touch;
+}
 #c {
 	display: block;
 	height: 100%;
@@ -22,17 +30,19 @@ body {
 	cursor: grab;
 }
 div {
-	padding-top: 25vh;
+	padding-bottom: 100vh;
+	scroll-snap-align: center;
 }
 a:link, a:visited {
 	z-index: 10;
-	margin-bottom: 10vh;
-	font-size: 20px;
+	margin-top: 10vh;
+	font-size: 24px;
 	color: #FFFFFF;
 	text-decoration: none;
 	padding: 15px;
+	margin-left: 5vw;
 }
 
 a:hover, a:active {
-  color: #22b2d7;
+	color: #22b2d7;
 }

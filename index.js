@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-//import {Tween, Easing} from '/interpolator.js';
+import {Tween, Easing} from 'interpolator';
 
 const getScrollPercentage = () => {
     const scrollTop = window.scrollY;
@@ -14,7 +14,7 @@ const getScrollPercentage = () => {
     }
 
     const scrollPercent = (scrollTop / scrollableHeight) * 100;
-    return Math.floor(scrollPercent);
+    return scrollPercent;
 }
 
 
@@ -106,8 +106,14 @@ const stories = [
 	}
 ];
 
+let currentCardID = 0;
+document.getElementById("interactivetitles").addEventListener("scrollend", (event) => {
+	console.log("scrollended");
+});
+
 
 //animation for each story link
+/**
 for (let x=0; x<stories.length; x++){
 	stories[x].tl = new ViewTimeline({
 		subject: document.getElementsByTagName("a")[x],
@@ -118,13 +124,13 @@ for (let x=0; x<stories.length; x++){
 		easing: 'ease-in',
 		timeline: stories[x].tl,
 	});
-}
+}**/
 
 let main = () => {
 	
 	//canvas
 	const canvas = document.getElementById("c");
-	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
+	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'highp', powerPreference: 'high-performance'});
 	renderer.setPixelRatio(1.0);
 	renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 	renderer.xr.enabled = true;
@@ -142,19 +148,23 @@ let main = () => {
 	
 	//lights
 	const color = 0xFFFFFF;
-	const intensity = 10;
+	const intensity = 200;
 	const light = new THREE.SpotLight(color, intensity);
-	light.position.set(0, 0, 1);
-	light.target.position.set(0, 0, 0);
-	light.angle = 1;
-	light.distance = 20;
+	light.position.set(0, 3, 3);
+	light.target.position.set(0.6, 1.5, 0);
+	light.angle = 0.5;
+	light.distance = 40;
 	light.penumbra = 1;
+	light.decay = 2.5;
 	
 	//scene
 	const scene = new THREE.Scene();
 	scene.background = new THREE.Color("#000000");
+	scene.add(camera);
 	scene.add(light);
 	scene.add(light.target);
+	camera.add(light);
+	camera.add(light.target);
 	const pCardsLinks = new THREE.Object3D();
 	
 	//photocards linking to story webpage
@@ -171,11 +181,11 @@ let main = () => {
 				new THREE.Vector3(1, 6, -(index+1)),
 			]);
 			const line = new THREE.Line(lineGeometry);
-			const marginGeometry = new THREE.PlaneGeometry(2.1, 2.5);
-			const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 90});
+			const marginGeometry = new THREE.PlaneGeometry(2.2, 2.5);
+			const marginMaterial = new THREE.MeshPhysicalMaterial({color: 0xFFFFFF, side: THREE.FrontSide, clearcoat: 1});
 			const marginCard = new THREE.Mesh(marginGeometry, marginMaterial);
 			const cardGeometry = new THREE.PlaneGeometry(2, 2*aspectratio);
-			const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: texture, shininess: 90});
+			const cardMaterial = new THREE.MeshPhysicalMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: texture, clearcoat: 1});
 			const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
 			marginCard.position.set(1, 0, -(index+1)+0.01);
 			photoCard.position.set(1, 0, -(index+1)+0.02);
@@ -203,7 +213,18 @@ let main = () => {
 		
 		renderer.render(scene, camera);
 		
-		let currentCardID = Math.floor(getScrollPercentage()/(100/stories.length));
+		currentCardID = Math.floor(getScrollPercentage()/(100/stories.length));
+		
+		console.log(currentCardID);
+		camera.position.set(-0.5, 0.5, 2-(getScrollPercentage()/6));
+		
+		for (let x in pCardsLinks.children){
+			if (x < currentCardID){
+				pCardsLinks.children[x].visible = false;
+			} else {
+				pCardsLinks.children[x].visible = true;
+			}
+		}
 		
 	}
 	
