@@ -130,7 +130,7 @@ let main = () => {
 	
 	//canvas
 	const canvas = document.getElementById("c");
-	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'highp', powerPreference: 'high-performance'});
+	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
 	renderer.setPixelRatio(1.0);
 	renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 	renderer.xr.enabled = true;
@@ -170,29 +170,33 @@ let main = () => {
 	//photocards linking to story webpage
 	const makePhotoCards = (index) => {
 		const loader = new THREE.TextureLoader();
+		const blanktexture = loader.load(stories[0].imgurl);
+		blanktexture.colorSpace = THREE.SRGBColorSpace;
+		const lineGeometry =  new THREE.BufferGeometry().setFromPoints([
+			new THREE.Vector3(1, 1, -(index+1)),
+			new THREE.Vector3(1, 6, -(index+1)),
+		]);
+		const line = new THREE.Line(lineGeometry);
+		const marginGeometry = new THREE.PlaneGeometry(2.2, 2.5);
+		const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 50});
+		const marginCard = new THREE.Mesh(marginGeometry, marginMaterial);
+		const cardGeometry = new THREE.PlaneGeometry(2, 2);
+		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: blanktexture, shininess: 50});
+		const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
+		marginCard.position.set(1, 0, -(index+1)+0.01);
+		photoCard.position.set(1, 0, -(index+1)+0.02);
+		//photoCard.lookAt(camera.position);
+		line.add(marginCard);
+		line.add(photoCard);
+		pCardsLinks.add(line);
+		
 		const texture = loader.load(stories[index].imgurl, (tex) => {
+			texture.colorSpace = THREE.SRGBColorSpace;
 			stories[index].width = tex.image.naturalWidth;
 			stories[index].height = tex.image.naturalHeight;
 			const aspectratio = stories[index].height/stories[index].width;
-			
-			texture.colorSpace = THREE.SRGBColorSpace;
-			const lineGeometry =  new THREE.BufferGeometry().setFromPoints([
-				new THREE.Vector3(1, 1, -(index+1)),
-				new THREE.Vector3(1, 6, -(index+1)),
-			]);
-			const line = new THREE.Line(lineGeometry);
-			const marginGeometry = new THREE.PlaneGeometry(2.2, 2.5);
-			const marginMaterial = new THREE.MeshPhysicalMaterial({color: 0xFFFFFF, side: THREE.FrontSide, clearcoat: 1});
-			const marginCard = new THREE.Mesh(marginGeometry, marginMaterial);
-			const cardGeometry = new THREE.PlaneGeometry(2, 2*aspectratio);
-			const cardMaterial = new THREE.MeshPhysicalMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: texture, clearcoat: 1});
-			const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
-			marginCard.position.set(1, 0, -(index+1)+0.01);
-			photoCard.position.set(1, 0, -(index+1)+0.02);
-			//photoCard.lookAt(camera.position);
-			line.add(marginCard);
-			line.add(photoCard);
-			pCardsLinks.add(line);
+			pCardsLinks.children[index].children[1].scale.y = aspectratio;
+			pCardsLinks.children[index].children[1].material.map = texture;
 		});
 	}
 	
@@ -203,6 +207,9 @@ let main = () => {
 	scene.add(pCardsLinks);
 	
 	const onWindowResize = () => {
+		if (window.innerHeight > window.innerWidth+(window.innerWidth/2)) {
+			camera.fov = 90;
+		}
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
 		
