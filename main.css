@@ -1,6 +1,6 @@
 body {
 	color: #FFFFFF;
-	background: #999999;
+	background: #000000;
 	margin: 0px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -20,11 +20,6 @@ body {
 }
 #interactivetitles {
 	padding-top: 60vh;
-	overflow-y: auto;
-	scrollbar-height: none;
-	-ms-overflowstyle: none;
-	scroll-snap-type: y mandatory;
-	-webkit-overflow-scrolling: touch;
 }
 #c {
 	display: block;
@@ -34,6 +29,8 @@ body {
 	padding: 0px;
 	background: none;
 	cursor: grab;
+	z-index: -2;
+	position: fixed;
 }
 div {
 	margin-left: 5vw;
@@ -41,7 +38,6 @@ div {
 	padding-left: 1vw;
 	padding-right: 1vw;
 	padding-bottom: 100vh;
-	scroll-snap-align: center;
 	width: 39vw;
 }
 a:link, a:visited {
@@ -56,25 +52,30 @@ a:link, a:visited {
 
 a:hover, a:active {
 	color: #22b2d7;
-}
-
-#bottomgrad {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	height: 20vh;
-	background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+	cursor: pointer;
 }
 
 #topgrad {
+	pointer-events: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width: 47vw;
-	height: 10vh;
+	height: 5vh;
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
+
+#bottomgrad {
+	pointer-events: none;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 47vw;
+	height: 30vh;
+	background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+
 
 @media screen and (max-width: 768px) {
 	a:link, a:visited {
@@ -83,10 +84,13 @@ a:hover, a:active {
 	div {
 		width: 90vw;
 	}
-	#bottomgrad {
-		height: 25vh;
-	}
 	#topgrad {
-		height: 15vh;
+		width: 100vw;
+		height: 50vh;
+		z-index: -1;
+	}
+	#bottomgrad {
+		height: 40vh;
+		width: 100vw;
 	}
 }
