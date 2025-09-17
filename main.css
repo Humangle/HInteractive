@@ -3,6 +3,12 @@ body {
 	background: #999999;
 	margin: 0px;
 	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	line-height: 1.5;
+	letter-spacing: 0.02em;
+	word-spacing: 0.1em;
 }
 #interactivecards {
 	height: 100%;
@@ -13,7 +19,7 @@ body {
 	z-index: -1;
 }
 #interactivetitles {
-	padding-top: 80vh;
+	padding-top: 60vh;
 	overflow-y: auto;
 	scrollbar-height: none;
 	-ms-overflowstyle: none;
@@ -30,19 +36,57 @@ body {
 	cursor: grab;
 }
 div {
+	margin-left: 5vw;
+	margin-right: 5vw;
+	padding-left: 1vw;
+	padding-right: 1vw;
 	padding-bottom: 100vh;
 	scroll-snap-align: center;
+	width: 39vw;
 }
 a:link, a:visited {
 	z-index: 10;
 	margin-top: 10vh;
-	font-size: 24px;
+	font-size: 2.5em;
 	color: #FFFFFF;
 	text-decoration: none;
-	padding: 15px;
-	margin-left: 5vw;
+	font-weight: bold;
+	text-shadow: 0px 0px 10px #000000;
 }
 
 a:hover, a:active {
 	color: #22b2d7;
+}
+
+#bottomgrad {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 20vh;
+	background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+#topgrad {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 47vw;
+	height: 10vh;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+@media screen and (max-width: 768px) {
+	a:link, a:visited {
+		font-size: 1.5em;
+	}
+	div {
+		width: 90vw;
+	}
+	#bottomgrad {
+		height: 25vh;
+	}
+	#topgrad {
+		height: 15vh;
+	}
 }

@@ -22,17 +22,17 @@ const stories = [
 	{
 		"title": "A Robbery Incident Killed His Wife and Unravelled His Whole Life",
 		"link": "https://interactive3.humanglemedia.com/a-robbery-incident-killed-his-wife-and-unravelled-his-whole-life",
-		"imgurl": "./images/IMG_1009_featured-1024x768.jpg"
+		"imgurl": "./images/IMG_1009_featured-1024x768-min.jpg"
 	},
 	{
 		"title": "The Disappearing Naira - A Data-Driven Dive into Nigeria’s Vanishing Currency",
 		"link": "https://interactive5.humanglemedia.com/the-disappearing-naira",
-		"imgurl": "./images/2-1-1024x576.png"
+		"imgurl": "./images/2-1-1024x576-min.jpg"
 	},
 	{
 		"title": "IPOB’s Monday Curfews Through The Lens Of Google’s Foot Traffic Data",
 		"link": "https://interactive4.humanglemedia.com/ipobs-Monday-curfews-through-the-lens-of-googles-foot-traffic-data/",
-		"imgurl": "./images/IMG_9862-1024x508.png"
+		"imgurl": "./images/IMG_9862-1024x508-min.jpg"
 	},
 	{
 		"title": "Nigeria Is Losing The Fight For Education",
@@ -42,74 +42,71 @@ const stories = [
 	{
 		"title": "Where Do You Run To?: A Tale Of Unequal Access To Aid For Displaced Persons In Adamawa",
 		"link": "https://interactive2.humanglemedia.com/unequal-access-aid",
-		"imgurl": "./images/unequal-access-aid-1024x591.png"
+		"imgurl": "./images/unequal-access-aid-1024x591-min.jpg"
 	},
 	{
 		"title": "Our past, present, future and impact",
 		"link": "https://interactive2.humanglemedia.com/welcome-to-humangle/",
-		"imgurl": "./images/6-1024x417.jpg"
+		"imgurl": "./images/6-1024x417-min.jpg"
 	},
 	{
 		"title": "The Northern Nigeria Roads That Have Become Terror Traps",
 		"link": "https://interactive.humanglemedia.com/the-northern-nigeria-roads-that-have-become-terror-traps/",
-		"imgurl": "./images/Terror-Traps-768x432.png"
+		"imgurl": "./images/Terror-Traps-768x432-min.jpg"
 	},
 	{
 		"title": "Nigeria’s Coat Of Arms",
 		"link": "https://interactive.humanglemedia.com/nigerias-coat-of-arms/",
-		"imgurl": "./images/Landscape-768x432.png"
+		"imgurl": "./images/Landscape-768x432-min.jpg"
 	},
 	{
 		"title": "Unhappy Women; Abuse, Divorce And Drug Addiction In Kano",
 		"link": "https://interactive.humanglemedia.com/the-straight-line-between-divorce-poverty-and-addiction-for-kano-women3/",
-		"imgurl": "./images/8-768x930.jpg"
+		"imgurl": "./images/8-768x930-min.jpg"
 	},
 	{
 		"title": "Knifar: The Women Who Spoke Out",
 		"link": "https://interactive.humanglemedia.com/knifar-the-women-who-spoke-out-2/",
-		"imgurl": "./images/camp-idp-female--768x512.jpg"
+		"imgurl": "./images/camp-idp-female--768x512-min.jpg"
 	},
 	{
 		"title": "A Triad Of Nightmares",
 		"link": "https://interactive.humanglemedia.com/a-triad-of-nightmares/",
-		"imgurl": "./images/A-Triad-Of-Nightmares-Landscape-768x432.jpg"
+		"imgurl": "./images/A-Triad-Of-Nightmares-Landscape-768x432-min.jpg"
 	},
 	{
 		"title": "#AK9Train: Timeline From Attack To Release",
 		"link": "https://interactive.humanglemedia.com/ak9train-timeline-from-attack-to-release/",
-		"imgurl": "./images/Train-Attack-2-768x513.jpg"
+		"imgurl": "./images/Train-Attack-2-768x513-min.jpg"
 	},
 	{
 		"title": "Nigeria’s Missing Persons Problem: The Numbers, The Faces",
 		"link": "https://interactive.humanglemedia.com/nigerias-missing-persons-problem-the-numbers-the-faces/",
-		"imgurl": "./images/kunleadebajo_Poster_with_the_words_MISSING_PERSON_and_the_face-768x512.jpg"
+		"imgurl": "./images/kunleadebajo_Poster_with_the_words_MISSING_PERSON_and_the_face-768x512-min.jpg"
 	},
 	{
 		"title": "Bama In Northeast Nigeria Shrinks And Stretches As Boko Haram War Lingers",
 		"link": "https://interactive.humanglemedia.com/bama-in-northeast-nigeria-shrinks-and-stretches-as-boko-haram-war-lingers/",
-		"imgurl": "./images/Bama-Landscape-768x432.png"
+		"imgurl": "./images/Bama-Landscape-768x432-min.jpg"
 	},
 	{
 		"title": "Nigeria’s Capital Is Encircled By Insecurity. It Looks Like This",
 		"link": "https://interactive.humanglemedia.com/nigerias-capital-is-encircled-by-insecurity-it-looks-like-this/",
-		"imgurl": "./images/Abuja-768x432.jpg"
+		"imgurl": "./images/Abuja-768x432-min.jpg"
 	},
 	{
 		"title": "It’s The Little Things: Life As A Visually Impaired Person",
 		"link": "https://interactive.humanglemedia.com/its-the-little-things-life-as-a-visually-impaired-person/",
-		"imgurl": "./images/Its-the-little-things-768x425.png"
+		"imgurl": "./images/Its-the-little-things-768x425-min.jpg"
 	},
 	{
 		"title": "All Die Na Die: At The Heart Of Nigeria’s Soot Problem",
 		"link": "https://interactive.humanglemedia.com/all-die-na-die-at-the-heart-of-nigerias-soot-problem/",
-		"imgurl": "./images/All-Die-Na-Die-768x398.jpg"
+		"imgurl": "./images/All-Die-Na-Die-768x398-min.jpg"
 	}
 ];
 
 let currentCardID = 0;
-document.getElementById("interactivetitles").addEventListener("scrollend", (event) => {
-	console.log("scrollended");
-});
 
 
 //animation for each story link
@@ -126,16 +123,13 @@ for (let x=0; x<stories.length; x++){
 	});
 }**/
 
-let main = () => {
+let main = async () => {
 	
 	//canvas
 	const canvas = document.getElementById("c");
 	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
 	renderer.setPixelRatio(1.0);
 	renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-	renderer.xr.enabled = true;
-	renderer.xr.setReferenceSpaceType('local');
-	renderer.xr.setFoveation(1.0);
 	
 	//camera
 	const fov = 45;
@@ -151,8 +145,8 @@ let main = () => {
 	const intensity = 200;
 	const light = new THREE.SpotLight(color, intensity);
 	light.position.set(0, 3, 3);
-	light.target.position.set(0.6, 1.5, 0);
-	light.angle = 0.5;
+	light.target.position.set(0.8, 1.2, 0);
+	light.angle = 0.6;
 	light.distance = 40;
 	light.penumbra = 1;
 	light.decay = 2.5;
@@ -168,9 +162,10 @@ let main = () => {
 	const pCardsLinks = new THREE.Object3D();
 	
 	//photocards linking to story webpage
-	const makePhotoCards = (index) => {
-		const loader = new THREE.TextureLoader();
-		const blanktexture = loader.load(stories[0].imgurl);
+	const makePhotoCards = async (index) => {
+		const loader = new THREE.ImageBitmapLoader();
+		loader.setOptions({ imageOrientation: 'flipY' });
+		const blanktexture = new THREE.CanvasTexture(await loader.loadAsync(stories[0].imgurl));
 		blanktexture.colorSpace = THREE.SRGBColorSpace;
 		const lineGeometry =  new THREE.BufferGeometry().setFromPoints([
 			new THREE.Vector3(1, 1, -(index+1)),
@@ -178,10 +173,10 @@ let main = () => {
 		]);
 		const line = new THREE.Line(lineGeometry);
 		const marginGeometry = new THREE.PlaneGeometry(2.2, 2.5);
-		const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 50});
+		const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 10, specular: 0xFFFFFF});
 		const marginCard = new THREE.Mesh(marginGeometry, marginMaterial);
 		const cardGeometry = new THREE.PlaneGeometry(2, 2);
-		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: blanktexture, shininess: 50});
+		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: blanktexture, shininess: 50, specular: 0xF0F0F0});
 		const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
 		marginCard.position.set(1, 0, -(index+1)+0.01);
 		photoCard.position.set(1, 0, -(index+1)+0.02);
@@ -220,9 +215,8 @@ let main = () => {
 		
 		renderer.render(scene, camera);
 		
-		currentCardID = Math.floor(getScrollPercentage()/(100/stories.length));
+		currentCardID = Math.floor((getScrollPercentage())/(100/stories.length));
 		
-		console.log(currentCardID);
 		camera.position.set(-0.5, 0.5, 2-(getScrollPercentage()/6));
 		
 		for (let x in pCardsLinks.children){
