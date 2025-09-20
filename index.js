@@ -108,21 +108,6 @@ const stories = [
 
 let currentCardID = 0;
 
-
-//animation for each story link
-/**
-for (let x=0; x<stories.length; x++){
-	stories[x].tl = new ViewTimeline({
-		subject: document.getElementsByTagName("a")[x],
-	});
-	document.getElementsByTagName("a")[x].animate({
-		opacity: [0, 1],
-	}, {
-		easing: 'ease-in',
-		timeline: stories[x].tl,
-	});
-}**/
-
 let main = (screen) => {
 	
 	//canvas
@@ -149,7 +134,7 @@ let main = (screen) => {
 	light.angle = 0.6;
 	light.distance = 40;
 	light.penumbra = 1;
-	light.decay = 2.5;
+	light.decay = 2.7;
 	
 	//scene
 	const scene = new THREE.Scene();
@@ -167,7 +152,7 @@ let main = (screen) => {
 		const blanktexture = loader.load(stories[0].imgurl);
 		blanktexture.colorSpace = THREE.SRGBColorSpace;
 		const lineGeometry =  new THREE.BufferGeometry().setFromPoints([
-			new THREE.Vector3(1, 1, -(index+1)),
+			new THREE.Vector3(1, -1, -(index+1)),
 			new THREE.Vector3(1, 20, -(index+1)),
 		]);
 		const line = new THREE.Line(lineGeometry);
@@ -226,20 +211,24 @@ let main = (screen) => {
 			
 			document.body.style.cursor = "auto";
 			for ( let i = 0; i < intersections.length; i++ ) {
+				if (parseInt(intersections[i].object.name) < stories.length && currentCardID != null){
 					this.selectedObject = intersections[i].object;
 					pCardsLinks.children[currentCardID].children[1].material.specular = new THREE.Color(0x000000);
 					pCardsLinks.children[currentCardID].children[1].material.shininess = 0;
 					document.body.style.cursor = "pointer";
+				}
 			}
 			if ((intersections.length == 0) && (document.body.style.cursor == "pointer")){
-				//document.getElementById("c").style.cursor = "auto";
+				document.getElementById("c").style.cursor = "auto";
 			}
 		}
 	}
 	
 	const DesktopPicker = new MousePickHelper(scene);
 	DesktopPicker.addEventListener('pointerdown', (event) => {
-		window.open(stories[currentCardID].link, '_blank');
+		if (camera.fov < 60){
+			window.open(stories[currentCardID].link, '_blank');
+		}
 	});
 	
 	const onPointerMove = (event) => {
@@ -250,6 +239,8 @@ let main = (screen) => {
 	const onWindowResize = () => {
 		if (window.innerHeight > window.innerWidth+(window.innerWidth/2)) {
 			camera.fov = 90;
+		} else {
+			camera.fov = 45;
 		}
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
