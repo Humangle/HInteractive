@@ -194,7 +194,9 @@ let main = (screen) => {
 			this.pointer = new THREE.Vector2();
 			
 			const onPointerDown = (event) => {
-				this.dispatchEvent({type: event.type, object: this.selectedObject});
+				if (document.body.style.cursor == "pointer"){
+					this.dispatchEvent({type: event.type, object: this.selectedObject});
+				}
 			}
 			
 			window.addEventListener('pointerdown', onPointerDown);
