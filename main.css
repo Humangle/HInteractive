@@ -17,6 +17,10 @@ body {
 	padding: 0px;
 	position: fixed;
 	z-index: -1;
+	background-image: url('https://raw.githubusercontent.com/Humangle/HInteractive/refs/heads/main/images/hinteractive_bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 #interactivetitles {
 	padding-top: 60vh;

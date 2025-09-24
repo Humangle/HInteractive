@@ -138,7 +138,6 @@ let main = (screen) => {
 	
 	//scene
 	const scene = new THREE.Scene();
-	scene.background = new THREE.Color("#000000");
 	scene.add(camera);
 	scene.add(light);
 	scene.add(light.target);
