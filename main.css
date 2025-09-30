@@ -88,6 +88,13 @@ a:hover, a:active {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	height: 4em;
+	padding: 10px;
+	margin-right: 10px;
+	width: auto;
+	position: fixed;
+	top: 0px;
+	right: 0px;
 }
 
 
