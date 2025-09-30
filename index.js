@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {Tween, Easing} from 'interpolator';
+//import {Tween, Easing} from 'interpolator';
 
 const getScrollPercentage = () => {
     const scrollTop = window.scrollY;
@@ -156,14 +156,13 @@ let main = (screen) => {
 		]);
 		const line = new THREE.Line(lineGeometry);
 		const marginGeometry = new THREE.PlaneGeometry(2.2, 2.5);
-		const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 10, specular: 0xFFFFFF});
+		const marginMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, shininess: 0, specular: 0xFFFFFF});
 		const marginCard = new THREE.Mesh(marginGeometry, marginMaterial);
 		const cardGeometry = new THREE.PlaneGeometry(2, 2);
 		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: blanktexture, shininess: 50, specular: 0xF0F0F0});
 		const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
 		marginCard.position.set(1, 0, -(index+1)+0.01);
 		photoCard.position.set(1, 0, -(index+1)+0.02);
-		//photoCard.lookAt(camera.position);
 		line.add(marginCard);
 		line.add(photoCard);
 		line.name = ""+index;
@@ -212,15 +211,16 @@ let main = (screen) => {
 			
 			document.body.style.cursor = "auto";
 			for ( let i = 0; i < intersections.length; i++ ) {
-				if (parseInt(intersections[i].object.name) < stories.length && currentCardID != null){
+				if (parseInt(intersections[i].object.name) == currentCardID){
+					console.log(i+"::"+currentCardID);
 					this.selectedObject = intersections[i].object;
 					pCardsLinks.children[currentCardID].children[1].material.specular = new THREE.Color(0x000000);
 					pCardsLinks.children[currentCardID].children[1].material.shininess = 0;
-					document.body.style.cursor = "pointer";
+					//document.body.style.cursor = "pointer";
 				}
 			}
 			if ((intersections.length == 0) && (document.body.style.cursor == "pointer")){
-				document.getElementById("c").style.cursor = "auto";
+				//document.getElementById("c").style.cursor = "auto";
 			}
 		}
 	}
@@ -228,7 +228,7 @@ let main = (screen) => {
 	const DesktopPicker = new MousePickHelper(scene);
 	DesktopPicker.addEventListener('pointerdown', (event) => {
 		if (camera.fov < 60){
-			window.open(stories[currentCardID].link, '_blank');
+			//window.open(stories[currentCardID].link, '_blank');
 		}
 	});
 	

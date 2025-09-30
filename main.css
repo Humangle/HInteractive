@@ -45,6 +45,10 @@ div {
 	width: 39vw;
 }
 a:link, a:visited {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 	z-index: 10;
 	margin-top: 10vh;
 	font-size: 2.5em;
@@ -77,6 +81,13 @@ a:hover, a:active {
 	width: 47vw;
 	height: 30vh;
 	background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+#logo {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 
