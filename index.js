@@ -112,7 +112,7 @@ let main = (screen) => {
 	
 	//canvas
 	const canvas = document.getElementById("c");
-	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true, premultipliedAlpha: false, precision: 'lowp', powerPreference: 'low-power'});
+	const renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: false, premultipliedAlpha: false, precision: 'highp', powerPreference: 'low-power'});
 	renderer.setPixelRatio(1.0);
 	renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 	
@@ -161,8 +161,8 @@ let main = (screen) => {
 		const cardGeometry = new THREE.PlaneGeometry(2, 2);
 		const cardMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, side: THREE.FrontSide, map: blanktexture, shininess: 50, specular: 0xF0F0F0});
 		const photoCard = new THREE.Mesh(cardGeometry, cardMaterial);
-		marginCard.position.set(1, 0, -(index+1)+0.01);
-		photoCard.position.set(1, 0, -(index+1)+0.02);
+		marginCard.position.set(1, 0, -(index+1)+0.02);
+		photoCard.position.set(1, 0, -(index+1)+0.04);
 		line.add(marginCard);
 		line.add(photoCard);
 		line.name = ""+index;
