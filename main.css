@@ -115,4 +115,8 @@ a:hover, a:active {
 		height: 40vh;
 		width: 100vw;
 	}
+	#logo {
+		height: 3em;
+		opacity: 0.4;
+	}
 }

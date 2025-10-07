@@ -120,7 +120,7 @@ let main = (screen) => {
 	const fov = screen;
 	const aspect = window.innerWidth / window.innerHeight;
 	const near = 0.1;
-	const far = 128;
+	const far = 50;
 	const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 	camera.position.set(-0.5, 0.5, 2);
 	camera.lookAt(1, -1, -10);
@@ -238,8 +238,8 @@ let main = (screen) => {
 	}
 	
 	const onWindowResize = () => {
-		if (window.innerHeight > window.innerWidth+(window.innerWidth/2)) {
-			camera.fov = 90;
+		if (window.innerHeight > window.innerWidth+(window.innerWidth/3)) {
+			camera.fov = 115;
 		} else {
 			camera.fov = 45;
 		}
@@ -276,8 +276,8 @@ let main = (screen) => {
 	window.addEventListener('resize', onWindowResize);
 }
 
-if (window.innerHeight > window.innerWidth+(window.innerWidth/2)) {
-	main(90);
+if (window.innerHeight > window.innerWidth+(window.innerWidth/3)) {
+	main(115);
 } else {
 	main(45);
 }
